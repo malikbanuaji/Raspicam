@@ -8,7 +8,7 @@ from threading import Thread
 
 
 class myserver:
-	def __init__(self):
+	def openCap(self):
 		self.cap = cv2.VideoCapture(0)
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ def gen():
 '''
 def get_frame():
 	while True:
-		ret , frame = ServerCam.cap.read()
+		ret , frame = ServerCam.openCap.cap.read()
 		ret2, frame2 = cv2.imencode('.jpg',frame)
 		stringData2=frame2.tostring()
 		yield (b'--frame\r\n'

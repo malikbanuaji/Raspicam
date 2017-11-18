@@ -4,7 +4,6 @@ from telepot.loop import MessageLoop
 import time
 import configparser
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
-from emoji import emojize
 ###############################
 from sdpcam import waktu
 ###############################
@@ -82,8 +81,7 @@ class telebot():
 		def papanmenu():
 			keyboardLayout = [['AMBIL GAMBAR','AMBIL VIDEO'],
 				['WaktuBell01','WaktuBell02','WaktuBell03','WaktuBell04',],
-				['WaktuKamera01','WaktuKamera02','WaktuKamera03','WaktuKamera04']
-				['Panduan']]			
+				['WaktuKamera01','WaktuKamera02','WaktuKamera03','WaktuKamera04'],['Panduan']]			
 			replyKeyboardMakeup = {'keyboard': keyboardLayout, 'resize_keyboard': False, 'one_time_keyboard': True}
 			self.bot.sendMessage(chat_id, text = '[Panduan] untuk informasi lebih lanjut',reply_markup = replyKeyboardMakeup)
 			#self.bot.sendMessage(chat_id, text = 'AMBIL GAMBAR - Mengambil gambar pada CCTV \nAMBIL VIDEO - Merekam video selama 5 detik \nALARM1-ALARM4 - Mengoperasikan kamera pada waktu dan durasi yang telah ditentukan \n\nSMA Dharma Putra', reply_markup = replyKeyboardMakeup)
@@ -159,7 +157,7 @@ class telebot():
 				self.bot.sendChatAction(chat_id, 'upload_video')
 				self.bot.sendVideo(chat_id, video = open(filenamevid, 'rb'),caption = filenamevid)
 			elif commands == 'Panduan':
-				self.bot.sendMessage(chat_id, text = 'AMBIL GAMBAR - Mengambil gambar pada CCTV \nAMBIL VIDEO - Merekam video selama 10 detik \nWaktuKamera01-04 - Mengoperasikan kamera pada waktu dan durasi yang telah ditentukan \nWaktuBell01-04 - Mengoperasikan Bell pada waktu yang telah ditentukan\n\nSMA Dharma Putra', reply_markup = replyKeyboardMakeup)
+				self.bot.sendMessage(chat_id, text = 'AMBIL GAMBAR - Mengambil gambar pada CCTV \nAMBIL VIDEO - Merekam video selama 10 detik \nWaktuKamera01-04 - Mengoperasikan kamera pada waktu dan durasi yang telah ditentukan \nWaktuBell01-04 - Mengoperasikan Bell pada waktu yang telah ditentukan\n\nSMA Dharma Putra')
 			elif commands == 'WaktuKamera01':
 				self.mn == False
 				self.mnn1 = 1
@@ -226,7 +224,7 @@ def wait_for_internet():
 def main():
 	wait_for_internet()
 	try:
-		a = myClassA()
+		a = telebot()
 		a.startBot()
 	except:
 		print("[INFO] no internet connection")
